@@ -4,9 +4,12 @@ import time
 from colorama import Fore, Back, Style
 import random
 import sys
+from win10toast import ToastNotifier 
+
 
 class PomoCli:
     tasks = []
+    toast = ToastNotifier()
     banner = """
                                                 █████████  █████       █████
                                                 ███░░░░░███ ░░███       ░░███ 
@@ -25,6 +28,7 @@ class PomoCli:
     """
     def __init__(self):
         self.main()
+        
         
     def main(self): ## Inicializador 
         os.system('cls')
@@ -83,8 +87,7 @@ class PomoCli:
                 print(Fore.GREEN + self.banner + Style.RESET_ALL)
         
                 
-                
-            print('Nice Work!')
+            self.toast.show_toast(title='POMODORO SESSION!',msg="YOU DONE IT🤩🤗", duration=10)
             os.system('cls')
             self.main()
 
