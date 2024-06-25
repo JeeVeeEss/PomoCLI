@@ -11,7 +11,7 @@ class PomoCli:
     tasks = []
     toast = ToastNotifier()
     banner = """
-                                                █████████  █████       █████
+                                                █████████   █████       █████
                                                 ███░░░░░███ ░░███       ░░███ 
     ████████   ██████  █████████████    ██████  ███     ░░░  ░███        ░███ 
    ░░███░░███ ███░░███░░███░░███░░███  ███░░███░███          ░███        ░███ 
@@ -27,6 +27,7 @@ class PomoCli:
     Para iniciar uma sessão Pomodoro - "2"                                                       
     """
     def __init__(self):
+        os.system('cls')
         self.main()
         
         
@@ -34,62 +35,72 @@ class PomoCli:
         os.system('cls')
         print(self.banner)
         print('  ', self.tasks)
-        sys.stdout.write('@(Vamos Lá)')
+        sys.stdout.write(Fore.GREEN + '@(Vamos Lá) - '+ Style.RESET_ALL)
         time.sleep(0.85)
-        self.inicio = int(input('Escolho: '))
+        self.inicio = str(input('Escolho: '))
         self.GoOn()
 
     def GoOn(self):
-
-        if self.inicio == 1:
-            print(''' 
-    1. Adicionar Tasks.
-    2. Limpar Tasks.
-    3. Remover Task.
-    4. Mostrar Tasks.
- ''')
-            options = int(input('Opções: '))
-        
-            if options == 1:
-                new = str(input("Nome da Task: "))
-                self.tasks.append(new)
-                print(f'{self.tasks}')
-                time.sleep(3)
-                os.system('cls')
-                self.main()
-
-            elif options == 2:
-                self.tasks = []
-                self.main()
-
-            elif options == 3:
-                item = int(input('Digite o Index da Task: '))
-                self.tasks.pop(item)
-                time.sleep(3)
-                print(self.tasks)
-                self.main()
+        try:
+            if self.inicio == '1':
+                print(''' 
+        1. Adicionar Tasks.
+        2. Limpar Tasks.
+        3. Remover Task.
+        4. Mostrar Tasks.
+    ''')
+                options = int(input('Opções: '))
             
-            elif options == 4:
-                for i in self.tasks:
-                    print(f"{self.tasks.index(i)}. {i}") 
-                    time.sleep(3)
-                self.main()
-            
-        elif self.inicio == 2:    
-                    
-            timer = int(input(Back.GREEN+'Selecione quanto tempo deseja estudar: ' +Style.RESET_ALL))
-            timer = timer *60
-            for i in range(timer):
-                print(f"               |      {random.choice(['!','@','#','#','$','%'])}                " + str(timer) + f"              {random.choice(['!','@','#','#','$','%'])}           |")
-                timer = timer - 1
-                time.sleep(1)
-                os.system('cls')
-                print(Fore.GREEN + self.banner + Style.RESET_ALL)
-        
+                if options == 1:
+                    new = str(input("Nome da Task: "))
+                    self.tasks.append(new)
+                    print(f'{self.tasks}')
+                    time.sleep(1)
+                    os.system('cls')
+                    self.main()
+
+                elif options == 2:
+                    self.tasks = []
+                    self.main()
+
+                elif options == 3:
+                    item = int(input('Digite a posição da Task: '))
+                    self.tasks.pop(item-1)
+                    time.sleep(1)
+                    print(self.tasks)
+                    self.main()
                 
-            self.toast.show_toast(title='POMODORO SESSION!',msg="YOU DONE IT🤩🤗", duration=10)
+                elif options == 4:
+                    self.main()
+                else: 
+                    raise Exception
+                
+            elif self.inicio == '2':    
+                        
+                timer = int(input(Back.GREEN+'Selecione quanto tempo deseja estudar: ' +Style.RESET_ALL))
+                timer = timer *60
+                for i in range(timer):
+                    print(f"               |      {random.choice(['!','@','#','#','$','%'])}                " + str(timer) + f"              {random.choice(['!','@','#','#','$','%'])}           |")
+                    timer = timer - 1
+                    time.sleep(1)
+                    os.system('cls')
+                    print(Fore.GREEN + self.banner + Style.RESET_ALL)
+            
+                    
+                self.toast.show_toast(title='POMODORO SESSION!',msg="YOU DONE IT", duration=10)
+                os.system('cls')
+                self.main()
+
+            elif self.inicio in ['sair', 'Sair', 'leave', 'SAIR', 'exit', 'Exit']:
+                os.system('cls')
+                KeyboardInterrupt    
+            else:
+                raise Exception
+        except Exception as e:
+            print('Try Again!')
             os.system('cls')
-            self.main()
+            print(self.banner)
+            self.GoOn()
 
              
 
