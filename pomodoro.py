@@ -54,7 +54,7 @@ class PomoCli:
                 if options == 1:
                     new = str(input("Nome da Task: "))
                     self.tasks.append(new)
-                    print(f'{self.tasks}')
+                    print(f'{i, i in self.tasks}\n')
                     time.sleep(1)
                     os.system('cls')
                     self.main()
@@ -100,7 +100,8 @@ class PomoCli:
             print('Try Again!')
             os.system('cls')
             print(self.banner)
-            self.GoOn()
+            self.main()
+            
 
              
 
