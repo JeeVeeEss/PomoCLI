@@ -79,15 +79,17 @@ class PomoCli:
                         
                 timer = int(input(Back.GREEN+'Selecione quanto tempo deseja estudar: ' +Style.RESET_ALL))
                 timer = timer *60
+                TIMER = timer
+                BAR = chr(9608)
                 for i in range(timer):
-                    print(f"               |      {random.choice(['!','@','#','#','$','%'])}                " + str(timer) + f"              {random.choice(['!','@','#','#','$','%'])}           |")
+                    print(f"               |      {random.choice(['!','@','#','#','$','%'])}              " + f"[{(i/TIMER)*100:.2f}%]" + f"              {random.choice(['!','@','#','#','$','%'])}           |")
                     timer = timer - 1
                     time.sleep(1)
                     os.system('cls')
                     print(Fore.GREEN + self.banner + Style.RESET_ALL)
             
                     
-                self.toast.show_toast(title='POMODORO SESSION!',msg="YOU DONE IT", duration=10)
+                self.toast.show_toast(title='SESSÃO CONCLUÍDA!',msg="ESTUDO CONCLUÍDO", duration=10)
                 os.system('cls')
                 self.main()
 
