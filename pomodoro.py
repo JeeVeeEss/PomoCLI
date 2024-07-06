@@ -90,7 +90,7 @@ class PomoCli:
                     print(Fore.GREEN + self.banner + Style.RESET_ALL)
             
                     
-                self.toast.show_toast(title='SESSÃO CONCLUÍDA!',msg=f"Tempo de estudo: {timer/60} minutos!", duration=10) # Envia a notificação.
+                self.toast.show_toast(title='SESSÃO CONCLUÍDA!',msg=f"Tempo de estudo: {TIMER} minutos!", duration=10) # Envia a notificação.
                 os.system('cls') 
                 self.main() # Fim do Timer
 
