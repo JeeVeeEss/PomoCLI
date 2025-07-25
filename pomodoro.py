@@ -35,7 +35,7 @@ class PomoCli:
     def main(self): ## Inicializador 
         os.system('cls')
         print(self.banner)
-        print('   ', self.tasks)
+        print('   ', [self.tasks.index(x) for x in self.tasks ] , "  ", self.tasks)
         sys.stdout.write('    '+Fore.GREEN + '@(Vamos Lá)  '+ Style.RESET_ALL + '-  ')
         time.sleep(0.85)
         self.inicio = str(input('Escolho: '))
